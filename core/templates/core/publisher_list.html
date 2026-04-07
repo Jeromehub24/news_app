@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Publishers{% endblock title %}
+
+{% block content %}
+  <section class="page-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Publishers</p>
+        <h1>Newsroom publishers</h1>
+        <p class="meta-text">Publications available for articles and newsletters.</p>
+      </div>
+    </div>
+
+    <ul class="card-list">
+      {% for publisher in publishers %}
+        <li class="card">
+          <h2>{{ publisher.name }}</h2>
+          <p>{{ publisher.description|default:"No description has been added yet." }}</p>
+        </li>
+      {% empty %}
+        <li class="card empty-state">No publishers were found.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock content %}

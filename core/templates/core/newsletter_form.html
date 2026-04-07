@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletter Form{% endblock title %}
+
+{% block content %}
+  <section class="auth-panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Newsletter</p>
+        <h1>Create a newsletter</h1>
+        <p class="meta-text">Draft a newsletter for readers and save it to the newsroom.</p>
+      </div>
+    </div>
+
+    <form method="post" class="form-panel">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="button-row">
+        <button type="submit">Save Newsletter</button>
+        <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">Back to Dashboard</a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}

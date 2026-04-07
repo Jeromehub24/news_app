@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+  <section class="page-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1>Welcome, {{ request.user.username }}</h1>
+        <p class="meta-text">Your current role is <strong>{{ request.user.get_role_display }}</strong>.</p>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <article class="card">
+        <h2>Browse the newsroom</h2>
+        <p>Read approved articles, review publishers, and check the latest newsletters.</p>
+        <a class="text-link" href="{% url 'core:article-list' %}">Open article list</a>
+      </article>
+
+      {% if request.user.role == "reader" %}
+        <article class="card">
+          <h2>Reader view</h2>
+          <p>Readers use the public pages to follow publishers and keep up with approved stories.</p>
+          <a class="text-link" href="{% url 'core:publisher-list' %}">Browse publishers</a>
+        </article>
+      {% elif request.user.role == "journalist" %}
+        <article class="card">
+          <h2>Journalist tools</h2>
+          <p>Create drafts, update your work, and send newsletters to readers.</p>
+          <div class="button-row">
+            <a class="button" href="{% url 'core:article-create' %}">Write Article</a>
+            <a class="button secondary-button" href="{% url 'core:newsletter-create' %}">Write Newsletter</a>
+          </div>
+        </article>
+      {% elif request.user.role == "editor" %}
+        <article class="card">
+          <h2>Editor tools</h2>
+          <p>Review drafts waiting for approval and publish the pieces that are ready.</p>
+          <a class="button" href="{% url 'core:review-queue' %}">Open Review Queue</a>
+        </article>
+      {% endif %}
+    </div>
+  </section>
+{% endblock content %}

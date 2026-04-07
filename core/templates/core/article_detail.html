@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock title %}
+
+{% block content %}
+  <article class="page-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Article</p>
+        <h1>{{ article.title }}</h1>
+        <p class="meta-text">
+          By {{ article.author }}
+          {% if article.publisher %}for {{ article.publisher }}{% endif %}
+          {% if article.approved and article.published_at %}
+            on {{ article.published_at|date:"M d, Y g:i A" }}
+          {% else %}
+            <span class="status-badge">Draft</span>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+
+    {% if article.summary %}
+      <p class="lead-text">{{ article.summary }}</p>
+    {% endif %}
+
+    <div class="detail-copy">{{ article.content|linebreaks }}</div>
+
+    {% if can_edit or can_approve %}
+      <div class="button-row">
+        {% if can_edit %}
+          <a class="button" href="{% url 'core:article-update' article.pk %}">Edit Article</a>
+        {% endif %}
+        {% if can_approve %}
+          <form method="post" action="{% url 'core:article-approve' article.pk %}">
+            {% csrf_token %}
+            <button type="submit">Approve Article</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endif %}
+  </article>
+{% endblock content %}

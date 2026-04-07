@@ -1,0 +1,29 @@
+# Python cache and build files
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+env/
+venv/
+.venv/
+env_site/
+
+# Local environment and editor files
+.env
+.env.*
+.vscode/
+.idea/
+
+# Django local data
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# OS files
+Thumbs.db
+.DS_Store

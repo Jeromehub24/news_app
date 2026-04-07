@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletters{% endblock title %}
+
+{% block content %}
+  <section class="page-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Newsletters</p>
+        <h1>Recent newsletter drafts</h1>
+        <p class="meta-text">Saved newsletter content from the newsroom team.</p>
+      </div>
+      {% if request.user.is_authenticated and request.user.role == "journalist" %}
+        <a class="button" href="{% url 'core:newsletter-create' %}">Create Newsletter</a>
+      {% endif %}
+    </div>
+
+    <ul class="card-list">
+      {% for newsletter in newsletters %}
+        <li class="card">
+          <h2>{{ newsletter.subject }}</h2>
+          <p class="meta-text">
+            By {{ newsletter.author }}
+            {% if newsletter.publisher %}for {{ newsletter.publisher }}{% endif %}
+            on {{ newsletter.created_at|date:"M d, Y" }}
+          </p>
+          <p>{{ newsletter.body|truncatechars:220 }}</p>
+        </li>
+      {% empty %}
+        <li class="card empty-state">No newsletters have been saved yet.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Articles{% endblock title %}
+
+{% block content %}
+  <section class="page-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Articles</p>
+        <h1>Approved stories</h1>
+        <p class="meta-text">Public articles listed from newest to oldest.</p>
+      </div>
+      {% if request.user.is_authenticated and request.user.role == "journalist" %}
+        <a class="button" href="{% url 'core:article-create' %}">Write Article</a>
+      {% endif %}
+    </div>
+
+    <ul class="card-list">
+      {% for article in articles %}
+        <li class="card">
+          <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+          <p class="meta-text">
+            By {{ article.author }}
+            {% if article.publisher %}for {{ article.publisher }}{% endif %}
+            {% if article.published_at %}on {{ article.published_at|date:"M d, Y" }}{% endif %}
+          </p>
+          {% if article.summary %}
+            <p>{{ article.summary }}</p>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li class="card empty-state">No approved articles were found.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock content %}

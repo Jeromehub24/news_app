@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Article Form{% endblock title %}
+
+{% block content %}
+  <section class="auth-panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Journalist Workspace</p>
+        <h1>{% if object %}Update article{% else %}Create article{% endif %}</h1>
+        <p class="meta-text">Write the story, save it, and let the editor review it.</p>
+      </div>
+    </div>
+
+    <form method="post" class="form-panel">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="button-row">
+        <button type="submit">Save Article</button>
+        <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">Back to Dashboard</a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}

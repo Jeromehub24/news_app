@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+  <section class="auth-panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Account Access</p>
+        <h1>Login</h1>
+        <p class="meta-text">Sign in as a reader, editor, or journalist.</p>
+      </div>
+    </div>
+
+    <form method="post" class="form-panel">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+      {% endif %}
+      <div class="button-row">
+        <button type="submit">Sign In</button>
+        <a class="button secondary-button" href="{% url 'accounts:signup' %}">Create Account</a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}
