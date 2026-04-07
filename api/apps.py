@@ -1,10 +1,3 @@
-"""
-App configuration for the API layer.
-
-Why this app exists:
-- The capstone requires a RESTful API.
-"""
-
 from django.apps import AppConfig
 
 

@@ -1,7 +1,3 @@
-"""
-Serializers translate Django model instances into JSON-friendly data.
-"""
-
 from rest_framework import serializers
 
 from core.models import Article, Newsletter, Publisher

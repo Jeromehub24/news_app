@@ -23,6 +23,9 @@ db.sqlite3
 *.log
 media/
 staticfiles/
+news_graph.dot
+news_graph.png
+news_py2puml.puml
 
 # OS files
 Thumbs.db

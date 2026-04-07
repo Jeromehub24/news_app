@@ -1,10 +1,3 @@
-"""
-REST API endpoints for the News Application.
-
-This file focuses on subscription-driven article retrieval because that is a
-capstone requirement.
-"""
-
 from django.db.models import Q
 from rest_framework import generics
 

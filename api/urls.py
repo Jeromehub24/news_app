@@ -1,7 +1,3 @@
-"""
-URL routes for the REST API.
-"""
-
 from django.urls import path
 
 from .views import PublisherListAPIView, SubscribedArticleFeedAPIView

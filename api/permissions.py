@@ -1,9 +1,3 @@
-"""
-Custom API permissions.
-
-This file is where role-aware API access rules should live.
-"""
-
 from rest_framework import permissions
 
 
