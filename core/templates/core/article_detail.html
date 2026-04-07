@@ -26,10 +26,15 @@
 
     <div class="detail-copy">{{ article.content|linebreaks }}</div>
 
-    {% if can_edit or can_approve %}
+    {% if can_edit or can_delete or can_approve %}
       <div class="button-row">
         {% if can_edit %}
           <a class="button" href="{% url 'core:article-update' article.pk %}">Edit Article</a>
+        {% endif %}
+        {% if can_delete %}
+          <a class="button danger-button" href="{% url 'core:article-delete' article.pk %}">
+            Delete Article
+          </a>
         {% endif %}
         {% if can_approve %}
           <form method="post" action="{% url 'core:article-approve' article.pk %}">

@@ -1,12 +1,27 @@
+import os
+import sys
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = "django-insecure-f&l0bgx*er01n24gg=0(idutw3tcq*1u^=b8!#%($1*s$y7x=-"
-DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+def env_flag(name, default=False):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.lower() in {"1", "true", "yes", "on"}
+
+
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-f&l0bgx*er01n24gg=0(idutw3tcq*1u^=b8!#%($1*s$y7x=-",
+)
+DEBUG = env_flag("DJANGO_DEBUG", default=True)
+ALLOWED_HOSTS = os.getenv(
+    "DJANGO_ALLOWED_HOSTS",
+    "127.0.0.1,localhost",
+).split(",")
 
 
 INSTALLED_APPS = [
@@ -58,12 +73,29 @@ WSGI_APPLICATION = "news_app.wsgi.application"
 ASGI_APPLICATION = "news_app.asgi.application"
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+DB_ENGINE = os.getenv("NEWS_APP_DB_ENGINE", "mariadb").lower()
+RUNNING_TESTS = "test" in sys.argv
+
+if RUNNING_TESTS or DB_ENGINE == "sqlite":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    # The project is expected to run against MariaDB for the capstone review.
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.getenv("NEWS_APP_DB_NAME", "news_app"),
+            "USER": os.getenv("NEWS_APP_DB_USER", "root"),
+            "PASSWORD": os.getenv("NEWS_APP_DB_PASSWORD", ""),
+            "HOST": os.getenv("NEWS_APP_DB_HOST", "127.0.0.1"),
+            "PORT": os.getenv("NEWS_APP_DB_PORT", "3306"),
+            "OPTIONS": {"charset": "utf8mb4"},
+        }
+    }
 
 
 AUTH_USER_MODEL = "accounts.CustomUser"
@@ -71,7 +103,10 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",

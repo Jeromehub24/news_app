@@ -10,7 +10,12 @@ def build_unique_slug(model_class, value, instance=None):
     slug = base_slug
     counter = 2
 
-    while model_class.objects.filter(slug=slug).exclude(pk=getattr(instance, "pk", None)).exists():
+    # Keep the current record eligible so edits can reuse the same slug.
+    while (
+        model_class.objects.filter(slug=slug)
+        .exclude(pk=getattr(instance, "pk", None))
+        .exists()
+    ):
         slug = f"{base_slug}-{counter}"
         counter += 1
 
@@ -97,6 +102,9 @@ class Newsletter(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("core:newsletter-list")
 
     def __str__(self):
         return self.subject

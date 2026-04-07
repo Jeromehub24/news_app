@@ -6,9 +6,21 @@
   <section class="auth-panel">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Journalist Workspace</p>
+        <p class="eyebrow">
+          {% if request.user.role == "editor" %}
+            Editor Workspace
+          {% else %}
+            Journalist Workspace
+          {% endif %}
+        </p>
         <h1>{% if object %}Update article{% else %}Create article{% endif %}</h1>
-        <p class="meta-text">Write the story, save it, and let the editor review it.</p>
+        <p class="meta-text">
+          {% if request.user.role == "editor" %}
+            Editors can revise any draft before it is published.
+          {% else %}
+            Write the story, save it, and let the editor review it.
+          {% endif %}
+        </p>
       </div>
     </div>
 
@@ -17,7 +29,9 @@
       {{ form.as_p }}
       <div class="button-row">
         <button type="submit">Save Article</button>
-        <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">Back to Dashboard</a>
+        <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">
+          Back to Dashboard
+        </a>
       </div>
     </form>
   </section>

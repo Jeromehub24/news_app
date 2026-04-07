@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Create Publisher{% endblock title %}
+
+{% block content %}
+  <section class="auth-panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Publisher</p>
+        <h1>Create a publisher</h1>
+        <p class="meta-text">
+          Editors can create publications and are automatically added as the
+          first editor.
+        </p>
+      </div>
+    </div>
+
+    <form method="post" class="form-panel">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="button-row">
+        <button type="submit">Save Publisher</button>
+        <a class="button secondary-button" href="{% url 'core:publisher-list' %}">
+          Back to Publishers
+        </a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}

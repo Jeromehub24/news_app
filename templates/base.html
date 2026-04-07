@@ -12,7 +12,10 @@
       <header class="site-header">
         <div class="branding">
           <a class="brand-link" href="{% url 'core:home' %}">News Application</a>
-          <p class="meta-text">A Django newsroom project with articles, publishers, and role-based workflows.</p>
+          <p class="meta-text">
+            A Django newsroom project with articles, publishers, and role-based
+            workflows.
+          </p>
         </div>
 
         <nav class="site-nav">
@@ -26,8 +29,16 @@
               <a href="{% url 'core:article-create' %}">New Article</a>
             {% elif request.user.role == "editor" %}
               <a href="{% url 'core:review-queue' %}">Review Queue</a>
+              <a href="{% url 'core:publisher-create' %}">New Publisher</a>
             {% endif %}
-            <a href="{% url 'accounts:logout' %}">Logout</a>
+            <form
+              method="post"
+              action="{% url 'accounts:logout' %}"
+              class="inline-form"
+            >
+              {% csrf_token %}
+              <button type="submit" class="nav-button">Logout</button>
+            </form>
           {% else %}
             <a href="{% url 'accounts:login' %}">Login</a>
             <a href="{% url 'accounts:signup' %}">Sign Up</a>

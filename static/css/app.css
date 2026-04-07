@@ -62,12 +62,22 @@ a:hover {
   gap: 0.75rem;
 }
 
-.site-nav a {
+.site-nav a,
+.site-nav .nav-button {
   padding: 0.65rem 0.95rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
+}
+
+.site-nav .nav-button {
+  font-weight: 500;
+}
+
+.site-nav .nav-button:hover {
+  background: var(--primary-dark);
+  color: #fff;
 }
 
 .page-content {
@@ -190,6 +200,10 @@ form p {
   margin: 0 0 1rem;
 }
 
+.inline-form {
+  margin: 0;
+}
+
 label {
   display: block;
   margin-bottom: 0.35rem;
@@ -210,6 +224,10 @@ select {
 
 textarea {
   min-height: 10rem;
+}
+
+select[multiple] {
+  min-height: 11rem;
 }
 
 button,
@@ -242,11 +260,23 @@ button:hover,
   background: #d1d5db;
 }
 
+.danger-button {
+  background: #b91c1c;
+}
+
+.danger-button:hover {
+  background: #991b1b;
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.button-row form {
+  margin: 0;
 }
 
 .text-link {

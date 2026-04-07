@@ -22,9 +22,27 @@
           <p class="meta-text">
             By {{ newsletter.author }}
             {% if newsletter.publisher %}for {{ newsletter.publisher }}{% endif %}
-            on {{ newsletter.created_at|date:"M d, Y" }}
+            updated {{ newsletter.updated_at|date:"M d, Y" }}
           </p>
           <p>{{ newsletter.body|truncatechars:220 }}</p>
+          {% if request.user.is_authenticated %}
+            {% if request.user.role == "editor" or request.user == newsletter.author %}
+              <div class="button-row">
+                <a
+                  class="button secondary-button"
+                  href="{% url 'core:newsletter-update' newsletter.pk %}"
+                >
+                  Edit
+                </a>
+                <a
+                  class="button danger-button"
+                  href="{% url 'core:newsletter-delete' newsletter.pk %}"
+                >
+                  Delete
+                </a>
+              </div>
+            {% endif %}
+          {% endif %}
         </li>
       {% empty %}
         <li class="card empty-state">No newsletters have been saved yet.</li>

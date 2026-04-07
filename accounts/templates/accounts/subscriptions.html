@@ -1,21 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Newsletter Form{% endblock title %}
+{% block title %}Subscriptions{% endblock title %}
 
 {% block content %}
   <section class="auth-panel">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Newsletter</p>
-        <h1>
-          {% if object %}
-            Update newsletter
-          {% else %}
-            Create a newsletter
-          {% endif %}
-        </h1>
+        <p class="eyebrow">Reader Feed</p>
+        <h1>Manage subscriptions</h1>
         <p class="meta-text">
-          Draft a newsletter for readers and save it to the newsroom.
+          Choose the publishers and journalists that should appear in your feed.
         </p>
       </div>
     </div>
@@ -24,7 +18,7 @@
       {% csrf_token %}
       {{ form.as_p }}
       <div class="button-row">
-        <button type="submit">Save Newsletter</button>
+        <button type="submit">Save Subscriptions</button>
         <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">
           Back to Dashboard
         </a>

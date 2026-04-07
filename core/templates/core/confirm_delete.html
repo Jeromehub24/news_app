@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Delete {{ item_type|title }}{% endblock title %}
+
+{% block content %}
+  <section class="auth-panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Delete {{ item_type|title }}</p>
+        <h1>Remove "{{ item_name }}"?</h1>
+        <p class="meta-text">This action cannot be undone.</p>
+      </div>
+    </div>
+
+    <form method="post" class="form-panel">
+      {% csrf_token %}
+      <div class="button-row">
+        <button type="submit" class="danger-button">
+          Delete {{ item_type|title }}
+        </button>
+        <a class="button secondary-button" href="{% url 'accounts:dashboard' %}">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </section>
+{% endblock content %}

@@ -18,7 +18,11 @@ def collect_article_subscribers(article):
 
 
 def send_article_approval_email(article):
-    recipients = [user.email for user in collect_article_subscribers(article) if user.email]
+    recipients = [
+        user.email
+        for user in collect_article_subscribers(article)
+        if user.email
+    ]
     if not recipients:
         return 0
 

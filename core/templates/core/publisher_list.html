@@ -8,8 +8,15 @@
       <div>
         <p class="eyebrow">Publishers</p>
         <h1>Newsroom publishers</h1>
-        <p class="meta-text">Publications available for articles and newsletters.</p>
+        <p class="meta-text">
+          Publications available for articles and newsletters.
+        </p>
       </div>
+      {% if can_create_publishers %}
+        <a class="button" href="{% url 'core:publisher-create' %}">
+          Create Publisher
+        </a>
+      {% endif %}
     </div>
 
     <ul class="card-list">
@@ -17,6 +24,32 @@
         <li class="card">
           <h2>{{ publisher.name }}</h2>
           <p>{{ publisher.description|default:"No description has been added yet." }}</p>
+          <p class="meta-text">
+            Editors: {{ publisher.editor_total }} |
+            Journalists: {{ publisher.journalist_total }}
+          </p>
+          {% if can_manage_membership %}
+            <div class="button-row">
+              <form
+                method="post"
+                action="{% url 'core:publisher-membership' publisher.pk %}"
+                class="inline-form"
+              >
+                {% csrf_token %}
+                {% if publisher.id in joined_publisher_ids %}
+                  <input type="hidden" name="action" value="leave">
+                  <button type="submit" class="secondary-button">
+                    Leave as {{ membership_role_label }}
+                  </button>
+                {% else %}
+                  <input type="hidden" name="action" value="join">
+                  <button type="submit">
+                    Join as {{ membership_role_label }}
+                  </button>
+                {% endif %}
+              </form>
+            </div>
+          {% endif %}
         </li>
       {% empty %}
         <li class="card empty-state">No publishers were found.</li>
