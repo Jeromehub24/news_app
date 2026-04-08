@@ -1,0 +1,9 @@
+.git
+.gitignore
+env_site/
+__pycache__/
+*.py[cod]
+db.sqlite3
+docs/
+staticfiles/
+media/
