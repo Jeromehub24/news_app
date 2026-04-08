@@ -1,3 +1,5 @@
+"""Service helpers for article approval and reader notifications."""
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
@@ -11,6 +13,7 @@ User = get_user_model()
 
 
 def collect_article_subscribers(article):
+    """Return readers who follow the article's author or publisher."""
     query = Q(subscribed_journalists=article.author)
     if article.publisher_id:
         query |= Q(subscribed_publishers=article.publisher)
@@ -18,6 +21,7 @@ def collect_article_subscribers(article):
 
 
 def send_article_approval_email(article):
+    """Notify subscribed readers when an article is approved."""
     recipients = [
         user.email
         for user in collect_article_subscribers(article)
@@ -36,10 +40,12 @@ def send_article_approval_email(article):
 
 
 def post_article_to_x(article):
+    """Placeholder for optional social media publishing."""
     return False
 
 
 def approve_article(article, editor=None):
+    """Mark an article as approved and trigger subscriber notifications."""
     article.approved = True
     article.approved_at = timezone.now()
     article.published_at = article.published_at or timezone.now()
