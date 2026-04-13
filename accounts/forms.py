@@ -1,3 +1,5 @@
+"""Forms for creating users and managing reader subscriptions."""
+
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
@@ -7,6 +9,8 @@ from core.models import Publisher
 
 
 class CustomUserCreationForm(UserCreationForm):
+    """Create a new News App user together with their newsroom role."""
+
     role = forms.ChoiceField(choices=Roles.CHOICES)
 
     class Meta(UserCreationForm.Meta):
@@ -15,6 +19,8 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    """Edit custom user fields in the Django admin interface."""
+
     class Meta(UserChangeForm.Meta):
         model = CustomUser
         fields = (
@@ -27,6 +33,8 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class ReaderSubscriptionForm(forms.ModelForm):
+    """Let readers choose publishers and journalists to follow."""
+
     class Meta:
         model = CustomUser
         fields = ("subscribed_publishers", "subscribed_journalists")
@@ -36,6 +44,7 @@ class ReaderSubscriptionForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        """Order subscription choices and attach reader-facing help text."""
         super().__init__(*args, **kwargs)
         self.fields["subscribed_publishers"].queryset = Publisher.objects.order_by(
             "name"

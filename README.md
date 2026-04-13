@@ -22,7 +22,7 @@ A Django news platform with separate reader, journalist, and editor workflows.
 Start from a terminal in the folder where you want to keep the project:
 
 ```powershell
-git clone <your-repository-url> news_app
+git clone https://github.com/Jeromehub24/news_app.git news_app
 cd news_app
 ```
 
@@ -41,6 +41,11 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+If you want to use MariaDB from the command line, make sure the MariaDB or
+MySQL client tools are installed and that `mysql` is available in your system
+`PATH`. If `mysql -u root -p` is not recognized, install the client tools first
+and then reopen your terminal.
+
 ### 3. Create a `.env` file
 
 Copy the example file and update it with your own values:
@@ -56,10 +61,18 @@ The project now loads `.env` automatically from the repository root by using
 
 #### Option A: MariaDB (recommended for the capstone review)
 
-Create the MariaDB database before running migrations:
+Open the MariaDB/MySQL shell:
+
+```powershell
+mysql -u root -p
+```
+
+Enter your root password when prompted, then create the database before running
+migrations:
 
 ```sql
 CREATE DATABASE news_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+EXIT;
 ```
 
 Then make sure your `.env` contains the correct MariaDB connection details:
@@ -90,7 +103,26 @@ NEWS_APP_DB_ENGINE=sqlite
 When `NEWS_APP_DB_ENGINE=sqlite`, Django will create `db.sqlite3` automatically
 when you run migrations.
 
-### 5. Apply migrations and seed the role groups
+### 5. Review the email settings
+
+The default `.env.example` values use Django's console email backend, which is
+safe for local development and prints outgoing emails in the terminal.
+
+To use a real mail server, update `.env` with your SMTP settings:
+
+```env
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+DEFAULT_FROM_EMAIL=newsroom@example.com
+SERVER_EMAIL=newsroom@example.com
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=your-smtp-username
+EMAIL_HOST_PASSWORD=your-smtp-password
+EMAIL_USE_TLS=1
+EMAIL_USE_SSL=0
+```
+
+### 6. Apply migrations and seed the role groups
 
 ```powershell
 python manage.py migrate
@@ -103,16 +135,16 @@ Open the app at `http://127.0.0.1:8000/`.
 
 ## Documentation
 
-The generated Sphinx HTML documentation is already included in the repository.
-Open `docs/_build/html/index.html` in a browser to browse it.
+The generated Sphinx HTML documentation is included in the repository. Open
+`docs/_build/html/index.html` in a browser to browse it.
 
 To rebuild the docs:
 
 ```powershell
-.\env_site\Scripts\python.exe -m pip install -U sphinx sphinx-rtd-theme
-.\env_site\Scripts\sphinx-apidoc.exe -f -o docs . docs\* env_site\* accounts\migrations\* core\migrations\*
-.\env_site\Scripts\sphinx-build.exe -M clean docs docs\_build
-.\env_site\Scripts\sphinx-build.exe -M html docs docs\_build
+pip install sphinx sphinx-rtd-theme
+sphinx-apidoc -f -o docs . docs\* .venv\* env_site\* accounts\migrations\* core\migrations\*
+sphinx-build -M clean docs docs\_build
+sphinx-build -M html docs docs\_build
 ```
 
 ## Running With Docker

@@ -136,10 +136,12 @@
 </section>
 <section id="module-accounts.admin">
 <span id="accounts-admin-module"></span><h2>accounts.admin module<a class="headerlink" href="#module-accounts.admin" title="Link to this heading"></a></h2>
+<p>Admin registrations for the custom News App user model.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.admin.CustomUserAdmin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.admin.</span></span><span class="sig-name descname"><span class="pre">CustomUserAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/admin.html#CustomUserAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.admin.CustomUserAdmin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserAdmin</span></code></p>
+<p>Configure how newsroom users are managed in the Django admin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.admin.CustomUserAdmin.add_fieldsets">
 <span class="sig-name descname"><span class="pre">add_fieldsets</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">((None,</span> <span class="pre">{'classes':</span> <span class="pre">('wide',),</span> <span class="pre">'fields':</span> <span class="pre">('username',</span> <span class="pre">'usable_password',</span> <span class="pre">'password1',</span> <span class="pre">'password2')}),</span> <span class="pre">('Newsroom',</span> <span class="pre">{'fields':</span> <span class="pre">('email',</span> <span class="pre">'role')}))</span></span><a class="headerlink" href="#accounts.admin.CustomUserAdmin.add_fieldsets" title="Link to this definition"></a></dt>
@@ -198,10 +200,12 @@
 </section>
 <section id="module-accounts.apps">
 <span id="accounts-apps-module"></span><h2>accounts.apps module<a class="headerlink" href="#module-accounts.apps" title="Link to this heading"></a></h2>
+<p>Application configuration for the accounts app.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.apps.AccountsConfig">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.apps.</span></span><span class="sig-name descname"><span class="pre">AccountsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/apps.html#AccountsConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.apps.AccountsConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<p>Register startup behavior for account-related signals.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.apps.AccountsConfig.default_auto_field">
 <span class="sig-name descname"><span class="pre">default_auto_field</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></span><a class="headerlink" href="#accounts.apps.AccountsConfig.default_auto_field" title="Link to this definition"></a></dt>
@@ -215,7 +219,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.apps.AccountsConfig.ready">
 <span class="sig-name descname"><span class="pre">ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/apps.html#AccountsConfig.ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.apps.AccountsConfig.ready" title="Link to this definition"></a></dt>
-<dd><p>Override this method in subclasses to run code when Django starts.</p>
+<dd><p>Import signal handlers after Django finishes loading apps.</p>
 </dd></dl>
 
 </dd></dl>
@@ -223,10 +227,12 @@
 </section>
 <section id="module-accounts.constants">
 <span id="accounts-constants-module"></span><h2>accounts.constants module<a class="headerlink" href="#module-accounts.constants" title="Link to this heading"></a></h2>
+<p>Role constants used throughout the News App permission system.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.constants.Roles">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.constants.</span></span><span class="sig-name descname"><span class="pre">Roles</span></span><a class="reference internal" href="_modules/accounts/constants.html#Roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.constants.Roles" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Canonical role values and human-readable role choices.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.constants.Roles.CHOICES">
 <span class="sig-name descname"><span class="pre">CHOICES</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('reader',</span> <span class="pre">'Reader'),</span> <span class="pre">('editor',</span> <span class="pre">'Editor'),</span> <span class="pre">('journalist',</span> <span class="pre">'Journalist')]</span></span><a class="headerlink" href="#accounts.constants.Roles.CHOICES" title="Link to this definition"></a></dt>
@@ -252,10 +258,12 @@
 </section>
 <section id="module-accounts.forms">
 <span id="accounts-forms-module"></span><h2>accounts.forms module<a class="headerlink" href="#module-accounts.forms" title="Link to this heading"></a></h2>
+<p>Forms for creating users and managing reader subscriptions.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.forms.CustomUserChangeForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.forms.</span></span><span class="sig-name descname"><span class="pre">CustomUserChangeForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/forms.html#CustomUserChangeForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.CustomUserChangeForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserChangeForm</span></code></p>
+<p>Edit custom user fields in the Django admin interface.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.forms.CustomUserChangeForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/accounts/forms.html#CustomUserChangeForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.CustomUserChangeForm.Meta" title="Link to this definition"></a></dt>
@@ -295,6 +303,7 @@
 <dt class="sig sig-object py" id="accounts.forms.CustomUserCreationForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.forms.</span></span><span class="sig-name descname"><span class="pre">CustomUserCreationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/forms.html#CustomUserCreationForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.CustomUserCreationForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserCreationForm</span></code></p>
+<p>Create a new News App user together with their newsroom role.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.forms.CustomUserCreationForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/accounts/forms.html#CustomUserCreationForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.CustomUserCreationForm.Meta" title="Link to this definition"></a></dt>
@@ -334,6 +343,7 @@
 <dt class="sig sig-object py" id="accounts.forms.ReaderSubscriptionForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.forms.</span></span><span class="sig-name descname"><span class="pre">ReaderSubscriptionForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/forms.html#ReaderSubscriptionForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.ReaderSubscriptionForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
+<p>Let readers choose publishers and journalists to follow.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.forms.ReaderSubscriptionForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/accounts/forms.html#ReaderSubscriptionForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.forms.ReaderSubscriptionForm.Meta" title="Link to this definition"></a></dt>
@@ -377,10 +387,12 @@
 </section>
 <section id="module-accounts.models">
 <span id="accounts-models-module"></span><h2>accounts.models module<a class="headerlink" href="#module-accounts.models" title="Link to this heading"></a></h2>
+<p>Database models for authenticated users and their newsroom preferences.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.models.CustomUser">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">CustomUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_superuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_staff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_joined</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/models.html#CustomUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.CustomUser" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">CustomUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/models.html#CustomUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.CustomUser" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUser</span></code></p>
+<p>Extend Django’s default user with roles and subscription fields.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="accounts.models.CustomUser.DoesNotExist">
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#accounts.models.CustomUser.DoesNotExist" title="Link to this definition"></a></dt>
@@ -670,50 +682,60 @@ object the first time, the query is executed.</p>
 </section>
 <section id="module-accounts.signals">
 <span id="accounts-signals-module"></span><h2>accounts.signals module<a class="headerlink" href="#module-accounts.signals" title="Link to this heading"></a></h2>
+<p>Signal handlers that keep custom users aligned with Django groups.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="accounts.signals.keep_role_group_in_sync">
 <span class="sig-prename descclassname"><span class="pre">accounts.signals.</span></span><span class="sig-name descname"><span class="pre">keep_role_group_in_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/signals.html#keep_role_group_in_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.signals.keep_role_group_in_sync" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Refresh the saved user’s Django group membership after each save.</p>
+</dd></dl>
 
 </section>
 <section id="module-accounts.tests">
 <span id="accounts-tests-module"></span><h2>accounts.tests module<a class="headerlink" href="#module-accounts.tests" title="Link to this heading"></a></h2>
+<p>Regression tests for account dashboards, login, and logout flows.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.tests.LogoutViewTests">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">LogoutViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/tests.html#LogoutViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.LogoutViewTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Verify that the custom logout flow is secure and usable.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.LogoutViewTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/tests.html#LogoutViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.LogoutViewTests.setUp" title="Link to this definition"></a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Create a reader account used by the logout-related tests.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.LogoutViewTests.test_dashboard_renders_logout_as_post_form">
 <span class="sig-name descname"><span class="pre">test_dashboard_renders_logout_as_post_form</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/tests.html#LogoutViewTests.test_dashboard_renders_logout_as_post_form"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.LogoutViewTests.test_dashboard_renders_logout_as_post_form" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The dashboard should render logout as a POST form instead of a link.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.LogoutViewTests.test_logout_post_ends_the_session">
 <span class="sig-name descname"><span class="pre">test_logout_post_ends_the_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/tests.html#LogoutViewTests.test_logout_post_ends_the_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.LogoutViewTests.test_logout_post_ends_the_session" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Posting to the logout endpoint should end the authenticated session.</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-accounts.urls">
 <span id="accounts-urls-module"></span><h2>accounts.urls module<a class="headerlink" href="#module-accounts.urls" title="Link to this heading"></a></h2>
+<p>URL routes for authentication, dashboards, and reader subscriptions.</p>
 </section>
 <section id="module-accounts.views">
 <span id="accounts-views-module"></span><h2>accounts.views module<a class="headerlink" href="#module-accounts.views" title="Link to this heading"></a></h2>
+<p>Views for authentication, dashboards, and reader subscriptions.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.views.DashboardView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">DashboardView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#DashboardView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.DashboardView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateView</span></code></p>
+<p>Display role-specific account summaries for the signed-in user.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.DashboardView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#DashboardView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.DashboardView.get_context_data" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add role-based counts that drive the dashboard summary cards.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.DashboardView.template_name">
@@ -726,6 +748,7 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="accounts.views.GuidedLoginView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">GuidedLoginView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#GuidedLoginView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.GuidedLoginView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginView</span></code></p>
+<p>Render the custom login template for the newsroom site.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.GuidedLoginView.redirect_authenticated_user">
 <span class="sig-name descname"><span class="pre">redirect_authenticated_user</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#accounts.views.GuidedLoginView.redirect_authenticated_user" title="Link to this definition"></a></dt>
@@ -742,6 +765,7 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="accounts.views.GuidedLogoutView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">GuidedLogoutView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#GuidedLogoutView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.GuidedLogoutView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LogoutView</span></code></p>
+<p>Log users out and return them to the homepage.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.GuidedLogoutView.next_page">
 <span class="sig-name descname"><span class="pre">next_page</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/'</span></span><a class="headerlink" href="#accounts.views.GuidedLogoutView.next_page" title="Link to this definition"></a></dt>
@@ -753,6 +777,7 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="accounts.views.ReaderRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">ReaderRequiredMixin</span></span><a class="reference internal" href="_modules/accounts/views.html#ReaderRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ReaderRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#accounts.views.RoleRequiredMixin" title="accounts.views.RoleRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoleRequiredMixin</span></code></a></p>
+<p>Limit a view to users who have the reader role.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.ReaderRequiredMixin.required_roles">
 <span class="sig-name descname"><span class="pre">required_roles</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('reader',)</span></span><a class="headerlink" href="#accounts.views.ReaderRequiredMixin.required_roles" title="Link to this definition"></a></dt>
@@ -764,6 +789,7 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="accounts.views.ReaderSubscriptionUpdateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">ReaderSubscriptionUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#ReaderSubscriptionUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ReaderSubscriptionUpdateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#accounts.views.ReaderRequiredMixin" title="accounts.views.ReaderRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReaderRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></p>
+<p>Update the publishers and journalists followed by a reader.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.ReaderSubscriptionUpdateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#accounts.views.ReaderSubscriptionUpdateView.form_class" title="Link to this definition"></a></dt>
@@ -773,15 +799,13 @@ object the first time, the query is executed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.ReaderSubscriptionUpdateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#ReaderSubscriptionUpdateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ReaderSubscriptionUpdateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Persist subscription changes and show a confirmation message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.ReaderSubscriptionUpdateView.get_object">
 <span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queryset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#ReaderSubscriptionUpdateView.get_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ReaderSubscriptionUpdateView.get_object" title="Link to this definition"></a></dt>
-<dd><p>Return the object the view is displaying.</p>
-<p>Require <cite>self.queryset</cite> and a <cite>pk</cite> or <cite>slug</cite> argument in the URLconf.
-Subclasses can override this to return any object.</p>
+<dd><p>Edit the currently authenticated reader instead of a URL-selected user.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -800,10 +824,12 @@ Subclasses can override this to return any object.</p>
 <dt class="sig sig-object py" id="accounts.views.RoleRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">RoleRequiredMixin</span></span><a class="reference internal" href="_modules/accounts/views.html#RoleRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.RoleRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></p>
+<p>Restrict a view to authenticated users with one of the allowed roles.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.RoleRequiredMixin.handle_no_permission">
 <span class="sig-name descname"><span class="pre">handle_no_permission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#RoleRequiredMixin.handle_no_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.RoleRequiredMixin.handle_no_permission" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Redirect signed-in users back to the dashboard with a helpful message.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.RoleRequiredMixin.required_roles">
@@ -813,7 +839,8 @@ Subclasses can override this to return any object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.RoleRequiredMixin.test_func">
 <span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#RoleRequiredMixin.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.RoleRequiredMixin.test_func" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> when the current user has an allowed newsroom role.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -821,6 +848,7 @@ Subclasses can override this to return any object.</p>
 <dt class="sig sig-object py" id="accounts.views.SignUpView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">SignUpView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#SignUpView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.SignUpView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></p>
+<p>Register a new user account for the News App.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.SignUpView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#accounts.views.SignUpView.form_class" title="Link to this definition"></a></dt>
@@ -830,7 +858,7 @@ Subclasses can override this to return any object.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.SignUpView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/views.html#SignUpView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.SignUpView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Show a success message after the account has been created.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -848,6 +876,7 @@ Subclasses can override this to return any object.</p>
 </section>
 <section id="module-accounts">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-accounts" title="Link to this heading"></a></h2>
+<p>User accounts, roles, and subscription management for the News App.</p>
 </section>
 </section>
 

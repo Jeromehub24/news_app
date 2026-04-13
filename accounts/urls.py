@@ -1,3 +1,5 @@
+"""URL routes for authentication, dashboards, and reader subscriptions."""
+
 from django.urls import path
 
 from .views import (

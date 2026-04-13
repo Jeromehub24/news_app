@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for core.tests</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.test</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestCase</span>
+<span></span><span class="sd">&quot;&quot;&quot;Regression tests for publisher workflows and editorial permissions.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.test</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestCase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">reverse</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">accounts.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">Roles</span>
@@ -81,9 +83,12 @@
 <div class="viewcode-block" id="PublisherWorkflowTests">
 <a class="viewcode-back" href="../../core.html#core.tests.PublisherWorkflowTests">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PublisherWorkflowTests</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify publisher creation and membership flows for newsroom users.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="PublisherWorkflowTests.setUp">
 <a class="viewcode-back" href="../../core.html#core.tests.PublisherWorkflowTests.setUp">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create editor and journalist accounts used by workflow tests.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">editor</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;editor1&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password123&quot;</span><span class="p">,</span>
@@ -99,6 +104,7 @@
 <div class="viewcode-block" id="PublisherWorkflowTests.test_editor_can_create_publisher_and_is_added_to_it">
 <a class="viewcode-back" href="../../core.html#core.tests.PublisherWorkflowTests.test_editor_can_create_publisher_and_is_added_to_it">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_can_create_publisher_and_is_added_to_it</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The publisher creator should automatically join as an editor.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
@@ -117,6 +123,7 @@
 <div class="viewcode-block" id="PublisherWorkflowTests.test_journalist_can_join_a_publisher">
 <a class="viewcode-back" href="../../core.html#core.tests.PublisherWorkflowTests.test_journalist_can_join_a_publisher">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_journalist_can_join_a_publisher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Journalists should be able to join existing publishers.&quot;&quot;&quot;</span>
         <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bugle&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">journalist</span><span class="p">)</span>
 
@@ -136,9 +143,12 @@
 <div class="viewcode-block" id="EditorialPermissionsTests">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EditorialPermissionsTests</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify that editors can manage content created by journalists.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="EditorialPermissionsTests.setUp">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests.setUp">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create newsroom fixtures used by the editorial permission tests.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">editor</span> <span class="o">=</span> <span class="n">CustomUser</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;editor2&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password123&quot;</span><span class="p">,</span>
@@ -168,6 +178,7 @@
 <div class="viewcode-block" id="EditorialPermissionsTests.test_editor_can_update_another_users_article">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_article">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_can_update_another_users_article</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Editors should be able to edit articles created by journalists.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
@@ -191,6 +202,7 @@
 <div class="viewcode-block" id="EditorialPermissionsTests.test_editor_can_delete_another_users_article">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_article">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_can_delete_another_users_article</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Editors should be able to delete articles they did not author.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
@@ -204,6 +216,7 @@
 <div class="viewcode-block" id="EditorialPermissionsTests.test_editor_can_update_another_users_newsletter">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_newsletter">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_can_update_another_users_newsletter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Editors should be able to update newsletter drafts by journalists.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
@@ -223,6 +236,7 @@
 <div class="viewcode-block" id="EditorialPermissionsTests.test_editor_can_delete_another_users_newsletter">
 <a class="viewcode-back" href="../../core.html#core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_newsletter">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_editor_can_delete_another_users_newsletter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Editors should be able to delete newsletter drafts by journalists.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_login</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">editor</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>

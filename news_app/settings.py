@@ -1,3 +1,5 @@
+"""Django settings for the News App project."""
+
 import os
 import sys
 from pathlib import Path
@@ -10,6 +12,7 @@ load_dotenv(BASE_DIR / ".env")
 
 
 def env_flag(name, default=False):
+    """Interpret a truthy or falsy environment variable as ``bool``."""
     value = os.getenv(name)
     if value is None:
         return default
@@ -133,8 +136,18 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "newsroom@example.com"
+EMAIL_BACKEND = os.getenv(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend",
+)
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "newsroom@example.com")
+SERVER_EMAIL = os.getenv("SERVER_EMAIL", DEFAULT_FROM_EMAIL)
+EMAIL_HOST = os.getenv("EMAIL_HOST", "localhost")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "25"))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = env_flag("EMAIL_USE_TLS", default=False)
+EMAIL_USE_SSL = env_flag("EMAIL_USE_SSL", default=False)
 
 
 LOGIN_REDIRECT_URL = "accounts:dashboard"

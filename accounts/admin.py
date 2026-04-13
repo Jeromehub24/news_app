@@ -1,3 +1,5 @@
+"""Admin registrations for the custom News App user model."""
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
@@ -7,6 +9,8 @@ from .models import CustomUser
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
+    """Configure how newsroom users are managed in the Django admin."""
+
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser

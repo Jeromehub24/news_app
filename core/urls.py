@@ -1,3 +1,5 @@
+"""URL routes for the public site, publishing tools, and moderation pages."""
+
 from django.urls import path
 
 from .views import (

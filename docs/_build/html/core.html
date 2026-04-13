@@ -151,10 +151,12 @@
 </section>
 <section id="module-core.admin">
 <span id="core-admin-module"></span><h2>core.admin module<a class="headerlink" href="#module-core.admin" title="Link to this heading"></a></h2>
+<p>Admin registrations for publishers, articles, and newsletters.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.admin.ArticleAdmin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.admin.</span></span><span class="sig-name descname"><span class="pre">ArticleAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/admin.html#ArticleAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.admin.ArticleAdmin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<p>Expose article moderation fields in the Django admin interface.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.admin.ArticleAdmin.list_display">
 <span class="sig-name descname"><span class="pre">list_display</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('title',</span> <span class="pre">'author',</span> <span class="pre">'publisher',</span> <span class="pre">'approved',</span> <span class="pre">'created_at')</span></span><a class="headerlink" href="#core.admin.ArticleAdmin.list_display" title="Link to this definition"></a></dt>
@@ -186,6 +188,7 @@
 <dt class="sig sig-object py" id="core.admin.NewsletterAdmin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.admin.</span></span><span class="sig-name descname"><span class="pre">NewsletterAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/admin.html#NewsletterAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.admin.NewsletterAdmin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<p>Configure newsletter editing and filtering in the admin site.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.admin.NewsletterAdmin.list_display">
 <span class="sig-name descname"><span class="pre">list_display</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('subject',</span> <span class="pre">'author',</span> <span class="pre">'publisher',</span> <span class="pre">'created_at')</span></span><a class="headerlink" href="#core.admin.NewsletterAdmin.list_display" title="Link to this definition"></a></dt>
@@ -212,6 +215,7 @@
 <dt class="sig sig-object py" id="core.admin.PublisherAdmin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.admin.</span></span><span class="sig-name descname"><span class="pre">PublisherAdmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/admin.html#PublisherAdmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.admin.PublisherAdmin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></p>
+<p>Display publishers in the Django admin with search support.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.admin.PublisherAdmin.list_display">
 <span class="sig-name descname"><span class="pre">list_display</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('name',</span> <span class="pre">'slug')</span></span><a class="headerlink" href="#core.admin.PublisherAdmin.list_display" title="Link to this definition"></a></dt>
@@ -232,10 +236,12 @@
 </section>
 <section id="module-core.apps">
 <span id="core-apps-module"></span><h2>core.apps module<a class="headerlink" href="#module-core.apps" title="Link to this heading"></a></h2>
+<p>Application configuration for the core publishing app.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.apps.CoreConfig">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.apps.</span></span><span class="sig-name descname"><span class="pre">CoreConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/apps.html#CoreConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.apps.CoreConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<p>Register the core app with Django.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.apps.CoreConfig.default_auto_field">
 <span class="sig-name descname"><span class="pre">default_auto_field</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></span><a class="headerlink" href="#core.apps.CoreConfig.default_auto_field" title="Link to this definition"></a></dt>
@@ -251,10 +257,12 @@
 </section>
 <section id="module-core.forms">
 <span id="core-forms-module"></span><h2>core.forms module<a class="headerlink" href="#module-core.forms" title="Link to this heading"></a></h2>
+<p>Forms for publishers, article drafts, and newsletter editing.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.forms.ArticleForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.forms.</span></span><span class="sig-name descname"><span class="pre">ArticleForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/forms.html#ArticleForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.ArticleForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.forms.PublisherScopedFormMixin" title="core.forms.PublisherScopedFormMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublisherScopedFormMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
+<p>Create or edit newsroom articles.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.forms.ArticleForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/core/forms.html#ArticleForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.ArticleForm.Meta" title="Link to this definition"></a></dt>
@@ -294,6 +302,7 @@
 <dt class="sig sig-object py" id="core.forms.NewsletterForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.forms.</span></span><span class="sig-name descname"><span class="pre">NewsletterForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/forms.html#NewsletterForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.NewsletterForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.forms.PublisherScopedFormMixin" title="core.forms.PublisherScopedFormMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublisherScopedFormMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
+<p>Create or edit newsletters authored by a journalist.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.forms.NewsletterForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/core/forms.html#NewsletterForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.NewsletterForm.Meta" title="Link to this definition"></a></dt>
@@ -333,6 +342,7 @@
 <dt class="sig sig-object py" id="core.forms.PublisherForm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.forms.</span></span><span class="sig-name descname"><span class="pre">PublisherForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'id_%s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'django.forms.utils.ErrorList'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_permitted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_required_attribute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/forms.html#PublisherForm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.PublisherForm" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
+<p>Create a publisher profile that editors can manage.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.forms.PublisherForm.Meta">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="_modules/core/forms.html#PublisherForm.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.PublisherForm.Meta" title="Link to this definition"></a></dt>
@@ -372,20 +382,24 @@
 <dt class="sig sig-object py" id="core.forms.PublisherScopedFormMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.forms.</span></span><span class="sig-name descname"><span class="pre">PublisherScopedFormMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/forms.html#PublisherScopedFormMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.PublisherScopedFormMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Restrict publisher choices to the publishers a user may work with.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.forms.PublisherScopedFormMixin.get_publisher_queryset">
 <span class="sig-name descname"><span class="pre">get_publisher_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/forms.html#PublisherScopedFormMixin.get_publisher_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.forms.PublisherScopedFormMixin.get_publisher_queryset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the publishers that should be visible in the current form.</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-core.models">
 <span id="core-models-module"></span><h2>core.models module<a class="headerlink" href="#module-core.models" title="Link to this heading"></a></h2>
+<p>Core data models for publishers, articles, and newsletters.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.models.Article">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slug</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approved_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">published_at</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Article" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Article" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Store an article draft or approved publication for the newsroom.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="core.models.Article.DoesNotExist">
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#core.models.Article.DoesNotExist" title="Link to this definition"></a></dt>
@@ -447,7 +461,8 @@ object the first time, the query is executed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Article.get_absolute_url">
 <span class="sig-name descname"><span class="pre">get_absolute_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Article.get_absolute_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Article.get_absolute_url" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the canonical detail page for the current article.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Article.get_next_by_created_at">
@@ -509,11 +524,7 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Article.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Article.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Article.save" title="Link to this definition"></a></dt>
-<dd><p>Save the current instance. Override this in a subclass if you want to
-control the saving process.</p>
-<p>The ‘force_insert’ and ‘force_update’ parameters can be used to insist
-that the “save” must be an SQL insert or update (or equivalent for
-non-SQL backends), respectively. Normally, they should not be set.</p>
+<dd><p>Generate missing slugs and stamp publish dates after approval.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -548,8 +559,9 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="core.models.Newsletter">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Newsletter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Newsletter" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Newsletter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Newsletter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Store newsletter content drafted by newsroom users.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="core.models.Newsletter.DoesNotExist">
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#core.models.Newsletter.DoesNotExist" title="Link to this definition"></a></dt>
@@ -597,7 +609,8 @@ object the first time, the query is executed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Newsletter.get_absolute_url">
 <span class="sig-name descname"><span class="pre">get_absolute_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Newsletter.get_absolute_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Newsletter.get_absolute_url" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the newsletter listing page after create or update actions.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Newsletter.get_next_by_created_at">
@@ -667,8 +680,9 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="core.models.Publisher">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slug</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Publisher" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">Publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Publisher" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Represent a publisher that editors and journalists can join.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="core.models.Publisher.DoesNotExist">
 <span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#core.models.Publisher.DoesNotExist" title="Link to this definition"></a></dt>
@@ -772,11 +786,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dl class="py method">
 <dt class="sig sig-object py" id="core.models.Publisher.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#Publisher.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.Publisher.save" title="Link to this definition"></a></dt>
-<dd><p>Save the current instance. Override this in a subclass if you want to
-control the saving process.</p>
-<p>The ‘force_insert’ and ‘force_update’ parameters can be used to insist
-that the “save” must be an SQL insert or update (or equivalent for
-non-SQL backends), respectively. Normally, they should not be set.</p>
+<dd><p>Populate the slug automatically before saving a publisher.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -807,7 +817,8 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dl class="py function">
 <dt class="sig sig-object py" id="core.models.build_unique_slug">
 <span class="sig-prename descclassname"><span class="pre">core.models.</span></span><span class="sig-name descname"><span class="pre">build_unique_slug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/models.html#build_unique_slug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.models.build_unique_slug" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generate a slug that is unique for the given model and value.</p>
+</dd></dl>
 
 </section>
 <section id="module-core.services">
@@ -840,35 +851,41 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 </section>
 <section id="module-core.tests">
 <span id="core-tests-module"></span><h2>core.tests module<a class="headerlink" href="#module-core.tests" title="Link to this heading"></a></h2>
+<p>Regression tests for publisher workflows and editorial permissions.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.tests.</span></span><span class="sig-name descname"><span class="pre">EditorialPermissionsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Verify that editors can manage content created by journalists.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests.setUp" title="Link to this definition"></a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Create newsroom fixtures used by the editorial permission tests.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_article">
 <span class="sig-name descname"><span class="pre">test_editor_can_delete_another_users_article</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests.test_editor_can_delete_another_users_article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_article" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Editors should be able to delete articles they did not author.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_newsletter">
 <span class="sig-name descname"><span class="pre">test_editor_can_delete_another_users_newsletter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests.test_editor_can_delete_another_users_newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests.test_editor_can_delete_another_users_newsletter" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Editors should be able to delete newsletter drafts by journalists.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_article">
 <span class="sig-name descname"><span class="pre">test_editor_can_update_another_users_article</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests.test_editor_can_update_another_users_article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_article" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Editors should be able to edit articles created by journalists.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_newsletter">
 <span class="sig-name descname"><span class="pre">test_editor_can_update_another_users_newsletter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#EditorialPermissionsTests.test_editor_can_update_another_users_newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.EditorialPermissionsTests.test_editor_can_update_another_users_newsletter" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Editors should be able to update newsletter drafts by journalists.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -876,38 +893,45 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dt class="sig sig-object py" id="core.tests.PublisherWorkflowTests">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.tests.</span></span><span class="sig-name descname"><span class="pre">PublisherWorkflowTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#PublisherWorkflowTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.PublisherWorkflowTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Verify publisher creation and membership flows for newsroom users.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.PublisherWorkflowTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#PublisherWorkflowTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.PublisherWorkflowTests.setUp" title="Link to this definition"></a></dt>
-<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+<dd><p>Create editor and journalist accounts used by workflow tests.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.PublisherWorkflowTests.test_editor_can_create_publisher_and_is_added_to_it">
 <span class="sig-name descname"><span class="pre">test_editor_can_create_publisher_and_is_added_to_it</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#PublisherWorkflowTests.test_editor_can_create_publisher_and_is_added_to_it"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.PublisherWorkflowTests.test_editor_can_create_publisher_and_is_added_to_it" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The publisher creator should automatically join as an editor.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.tests.PublisherWorkflowTests.test_journalist_can_join_a_publisher">
 <span class="sig-name descname"><span class="pre">test_journalist_can_join_a_publisher</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/tests.html#PublisherWorkflowTests.test_journalist_can_join_a_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.tests.PublisherWorkflowTests.test_journalist_can_join_a_publisher" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Journalists should be able to join existing publishers.</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-core.urls">
 <span id="core-urls-module"></span><h2>core.urls module<a class="headerlink" href="#module-core.urls" title="Link to this heading"></a></h2>
+<p>URL routes for the public site, publishing tools, and moderation pages.</p>
 </section>
 <section id="module-core.views">
 <span id="core-views-module"></span><h2>core.views module<a class="headerlink" href="#module-core.views" title="Link to this heading"></a></h2>
+<p>Views that power the public site, publishing tools, and review queue.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="core.views.ApproveArticleView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ApproveArticleView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ApproveArticleView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ApproveArticleView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorRequiredMixin" title="core.views.EditorRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
+<p>Approve a pending article and trigger downstream notifications.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ApproveArticleView.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ApproveArticleView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ApproveArticleView.post" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Approve the selected article and return the editor to the review queue.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -915,6 +939,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dt class="sig sig-object py" id="core.views.ArticleCreateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleCreateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.JournalistRequiredMixin" title="core.views.JournalistRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">JournalistRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></p>
+<p>Create a new article draft for the authenticated journalist.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.ArticleCreateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#core.views.ArticleCreateView.form_class" title="Link to this definition"></a></dt>
@@ -924,13 +949,13 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleCreateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleCreateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleCreateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Attach the current user as author before saving the article.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleCreateView.get_form_kwargs">
 <span class="sig-name descname"><span class="pre">get_form_kwargs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleCreateView.get_form_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleCreateView.get_form_kwargs" title="Link to this definition"></a></dt>
-<dd><p>Return the keyword arguments for instantiating the form.</p>
+<dd><p>Pass the current user into the form for publisher scoping.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -950,16 +975,17 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dt class="sig sig-object py" id="core.views.ArticleDeleteView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDeleteView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.ArticleEditorAccessMixin" title="core.views.ArticleEditorAccessMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleEditorAccessMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteView</span></code></p>
+<p>Delete an article after a confirmation step.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleDeleteView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDeleteView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDeleteView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, redirect to the supplied URL.</p>
+<dd><p>Delete the article and show a success message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleDeleteView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDeleteView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDeleteView.get_context_data" title="Link to this definition"></a></dt>
-<dd><p>Insert the form into the context dict.</p>
+<dd><p>Describe the article being deleted in the shared confirmation template.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -984,6 +1010,7 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dt class="sig sig-object py" id="core.views.ArticleDetailView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDetailView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></p>
+<p>Display an article while honoring role-based visibility rules.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.ArticleDetailView.context_object_name">
 <span class="sig-name descname"><span class="pre">context_object_name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article'</span></span><a class="headerlink" href="#core.views.ArticleDetailView.context_object_name" title="Link to this definition"></a></dt>
@@ -992,15 +1019,13 @@ class built by <code class="docutils literal notranslate"><span class="pre">crea
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleDetailView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDetailView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDetailView.get_context_data" title="Link to this definition"></a></dt>
-<dd><p>Insert the single object into the context dict.</p>
+<dd><p>Expose edit, delete, and approve permissions to the template.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleDetailView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleDetailView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleDetailView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Return the <cite>QuerySet</cite> that will be used to look up the object.</p>
-<p>This method is called by the default implementation of get_object() and
-may not be called if get_object() is overridden.</p>
+<dd><p>Allow editors to see all drafts and journalists to see their own.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1020,10 +1045,12 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.ArticleEditorAccessMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleEditorAccessMixin</span></span><a class="reference internal" href="_modules/core/views.html#ArticleEditorAccessMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleEditorAccessMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorOrJournalistRequiredMixin" title="core.views.EditorOrJournalistRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorOrJournalistRequiredMixin</span></code></a></p>
+<p>Allow editors to access all articles and journalists to access their own.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleEditorAccessMixin.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleEditorAccessMixin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleEditorAccessMixin.get_queryset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Restrict journalists to their own articles while editors see all.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1031,6 +1058,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.ArticleListView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></p>
+<p>List approved articles for readers and anonymous visitors.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.ArticleListView.context_object_name">
 <span class="sig-name descname"><span class="pre">context_object_name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles'</span></span><a class="headerlink" href="#core.views.ArticleListView.context_object_name" title="Link to this definition"></a></dt>
@@ -1039,9 +1067,7 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleListView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleListView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Return the list of items for this view.</p>
-<p>The return value must be an iterable and may be an instance of
-<cite>QuerySet</cite> in which case <cite>QuerySet</cite> specific behavior will be enabled.</p>
+<dd><p>Return the published articles ordered by most recent activity.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1061,6 +1087,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.ArticleUpdateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ArticleUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleUpdateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.ArticleEditorAccessMixin" title="core.views.ArticleEditorAccessMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleEditorAccessMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></p>
+<p>Edit an existing article.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.ArticleUpdateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#core.views.ArticleUpdateView.form_class" title="Link to this definition"></a></dt>
@@ -1070,13 +1097,13 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleUpdateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleUpdateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleUpdateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Save article changes and confirm the update to the user.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ArticleUpdateView.get_form_kwargs">
 <span class="sig-name descname"><span class="pre">get_form_kwargs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ArticleUpdateView.get_form_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ArticleUpdateView.get_form_kwargs" title="Link to this definition"></a></dt>
-<dd><p>Return the keyword arguments for instantiating the form.</p>
+<dd><p>Pass the current user into the form for publisher scoping.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1096,6 +1123,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.EditorOrJournalistRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">EditorOrJournalistRequiredMixin</span></span><a class="reference internal" href="_modules/core/views.html#EditorOrJournalistRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.EditorOrJournalistRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.RoleRequiredMixin" title="core.views.RoleRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoleRequiredMixin</span></code></a></p>
+<p>Allow access to either editors or journalists.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.EditorOrJournalistRequiredMixin.required_roles">
 <span class="sig-name descname"><span class="pre">required_roles</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('editor',</span> <span class="pre">'journalist')</span></span><a class="headerlink" href="#core.views.EditorOrJournalistRequiredMixin.required_roles" title="Link to this definition"></a></dt>
@@ -1107,6 +1135,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.EditorRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">EditorRequiredMixin</span></span><a class="reference internal" href="_modules/core/views.html#EditorRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.EditorRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.RoleRequiredMixin" title="core.views.RoleRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoleRequiredMixin</span></code></a></p>
+<p>Limit a view to newsroom users with the editor role.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.EditorRequiredMixin.required_roles">
 <span class="sig-name descname"><span class="pre">required_roles</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('editor',)</span></span><a class="headerlink" href="#core.views.EditorRequiredMixin.required_roles" title="Link to this definition"></a></dt>
@@ -1118,10 +1147,12 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.HomePageView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">HomePageView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#HomePageView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.HomePageView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateView</span></code></p>
+<p>Show a landing page with recent approved articles and publishers.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.HomePageView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#HomePageView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.HomePageView.get_context_data" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add homepage content blocks used by the landing page template.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.HomePageView.template_name">
@@ -1134,6 +1165,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.JournalistRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">JournalistRequiredMixin</span></span><a class="reference internal" href="_modules/core/views.html#JournalistRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.JournalistRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.RoleRequiredMixin" title="core.views.RoleRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoleRequiredMixin</span></code></a></p>
+<p>Limit a view to newsroom users with the journalist role.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.JournalistRequiredMixin.required_roles">
 <span class="sig-name descname"><span class="pre">required_roles</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('journalist',)</span></span><a class="headerlink" href="#core.views.JournalistRequiredMixin.required_roles" title="Link to this definition"></a></dt>
@@ -1145,6 +1177,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.NewsletterCreateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterCreateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.JournalistRequiredMixin" title="core.views.JournalistRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">JournalistRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></p>
+<p>Create a newsletter draft for the authenticated journalist.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.NewsletterCreateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#core.views.NewsletterCreateView.form_class" title="Link to this definition"></a></dt>
@@ -1154,13 +1187,13 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterCreateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterCreateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterCreateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Attach the current user as author before saving the newsletter.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterCreateView.get_form_kwargs">
 <span class="sig-name descname"><span class="pre">get_form_kwargs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterCreateView.get_form_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterCreateView.get_form_kwargs" title="Link to this definition"></a></dt>
-<dd><p>Return the keyword arguments for instantiating the form.</p>
+<dd><p>Pass the current user into the form for publisher scoping.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1185,16 +1218,17 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.NewsletterDeleteView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterDeleteView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.NewsletterEditorAccessMixin" title="core.views.NewsletterEditorAccessMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterEditorAccessMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteView</span></code></p>
+<p>Delete a newsletter after a confirmation step.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterDeleteView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterDeleteView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterDeleteView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, redirect to the supplied URL.</p>
+<dd><p>Delete the newsletter and show a success message.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterDeleteView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterDeleteView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterDeleteView.get_context_data" title="Link to this definition"></a></dt>
-<dd><p>Insert the form into the context dict.</p>
+<dd><p>Describe the newsletter being deleted in the shared confirmation view.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1219,10 +1253,12 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.NewsletterEditorAccessMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterEditorAccessMixin</span></span><a class="reference internal" href="_modules/core/views.html#NewsletterEditorAccessMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterEditorAccessMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorOrJournalistRequiredMixin" title="core.views.EditorOrJournalistRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorOrJournalistRequiredMixin</span></code></a></p>
+<p>Allow editors to access all newsletters and journalists only their own.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterEditorAccessMixin.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterEditorAccessMixin.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterEditorAccessMixin.get_queryset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Restrict journalists to their own newsletters while editors see all.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1230,6 +1266,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.NewsletterListView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></p>
+<p>List newsletters ordered by most recently updated first.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.NewsletterListView.context_object_name">
 <span class="sig-name descname"><span class="pre">context_object_name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'newsletters'</span></span><a class="headerlink" href="#core.views.NewsletterListView.context_object_name" title="Link to this definition"></a></dt>
@@ -1238,9 +1275,7 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterListView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterListView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Return the list of items for this view.</p>
-<p>The return value must be an iterable and may be an instance of
-<cite>QuerySet</cite> in which case <cite>QuerySet</cite> specific behavior will be enabled.</p>
+<dd><p>Return newsletters with related author and publisher records loaded.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1260,6 +1295,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.NewsletterUpdateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterUpdateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#core.views.NewsletterEditorAccessMixin" title="core.views.NewsletterEditorAccessMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterEditorAccessMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></p>
+<p>Edit an existing newsletter draft.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.NewsletterUpdateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#core.views.NewsletterUpdateView.form_class" title="Link to this definition"></a></dt>
@@ -1269,13 +1305,13 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterUpdateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterUpdateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterUpdateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Persist newsletter changes and confirm the update.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.NewsletterUpdateView.get_form_kwargs">
 <span class="sig-name descname"><span class="pre">get_form_kwargs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#NewsletterUpdateView.get_form_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.NewsletterUpdateView.get_form_kwargs" title="Link to this definition"></a></dt>
-<dd><p>Return the keyword arguments for instantiating the form.</p>
+<dd><p>Pass the current user into the form for publisher scoping.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1300,6 +1336,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.PublisherCreateView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">PublisherCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherCreateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorRequiredMixin" title="core.views.EditorRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></p>
+<p>Create a new publisher and add the creator as its first editor.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.PublisherCreateView.form_class">
 <span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#core.views.PublisherCreateView.form_class" title="Link to this definition"></a></dt>
@@ -1309,7 +1346,7 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.PublisherCreateView.form_valid">
 <span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherCreateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherCreateView.form_valid" title="Link to this definition"></a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><p>Save the publisher and grant the creator editor membership.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1334,6 +1371,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.PublisherListView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">PublisherListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></p>
+<p>List publishers together with membership counts and join state.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.PublisherListView.context_object_name">
 <span class="sig-name descname"><span class="pre">context_object_name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'publishers'</span></span><a class="headerlink" href="#core.views.PublisherListView.context_object_name" title="Link to this definition"></a></dt>
@@ -1342,15 +1380,13 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.PublisherListView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherListView.get_context_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherListView.get_context_data" title="Link to this definition"></a></dt>
-<dd><p>Get the context for this view.</p>
+<dd><p>Expose membership actions and counts tailored to the current user.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.PublisherListView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherListView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Return the list of items for this view.</p>
-<p>The return value must be an iterable and may be an instance of
-<cite>QuerySet</cite> in which case <cite>QuerySet</cite> specific behavior will be enabled.</p>
+<dd><p>Annotate publishers with editor and journalist totals for display.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1370,15 +1406,18 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.PublisherMembershipToggleView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">PublisherMembershipToggleView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherMembershipToggleView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherMembershipToggleView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorOrJournalistRequiredMixin" title="core.views.EditorOrJournalistRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorOrJournalistRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
+<p>Join or leave a publisher as either an editor or journalist.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.PublisherMembershipToggleView.get_membership_manager">
 <span class="sig-name descname"><span class="pre">get_membership_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherMembershipToggleView.get_membership_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherMembershipToggleView.get_membership_manager" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the correct many-to-many manager for the user’s role.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.PublisherMembershipToggleView.post">
 <span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#PublisherMembershipToggleView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.PublisherMembershipToggleView.post" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Toggle the current user’s membership in the selected publisher.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1386,6 +1425,7 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.ReviewQueueView">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">ReviewQueueView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ReviewQueueView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ReviewQueueView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code>, <a class="reference internal" href="#core.views.EditorRequiredMixin" title="core.views.EditorRequiredMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EditorRequiredMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></p>
+<p>List unapproved articles that still need editorial review.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.ReviewQueueView.context_object_name">
 <span class="sig-name descname"><span class="pre">context_object_name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles'</span></span><a class="headerlink" href="#core.views.ReviewQueueView.context_object_name" title="Link to this definition"></a></dt>
@@ -1394,9 +1434,7 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.ReviewQueueView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#ReviewQueueView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.ReviewQueueView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Return the list of items for this view.</p>
-<p>The return value must be an iterable and may be an instance of
-<cite>QuerySet</cite> in which case <cite>QuerySet</cite> specific behavior will be enabled.</p>
+<dd><p>Return the pending article queue ordered by newest first.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1416,10 +1454,12 @@ may not be called if get_object() is overridden.</p>
 <dt class="sig sig-object py" id="core.views.RoleRequiredMixin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">core.views.</span></span><span class="sig-name descname"><span class="pre">RoleRequiredMixin</span></span><a class="reference internal" href="_modules/core/views.html#RoleRequiredMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.RoleRequiredMixin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></p>
+<p>Restrict a view to signed-in users with one of the required roles.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.RoleRequiredMixin.handle_no_permission">
 <span class="sig-name descname"><span class="pre">handle_no_permission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#RoleRequiredMixin.handle_no_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.RoleRequiredMixin.handle_no_permission" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Redirect signed-in users to the dashboard with an error message.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="core.views.RoleRequiredMixin.required_roles">
@@ -1429,13 +1469,15 @@ may not be called if get_object() is overridden.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="core.views.RoleRequiredMixin.test_func">
 <span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/core/views.html#RoleRequiredMixin.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#core.views.RoleRequiredMixin.test_func" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> when the current user satisfies the role check.</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-core">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-core" title="Link to this heading"></a></h2>
+<p>Core publishing models, forms, views, and services for the News App.</p>
 </section>
 </section>
 

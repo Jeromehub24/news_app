@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for api.serializers</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span>
+<span></span><span class="sd">&quot;&quot;&quot;Serializers that expose newsroom models through the REST API.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">core.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span><span class="p">,</span> <span class="n">Publisher</span>
 
@@ -77,6 +79,8 @@
 <div class="viewcode-block" id="PublisherSerializer">
 <a class="viewcode-back" href="../../api.html#api.serializers.PublisherSerializer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PublisherSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize publisher details for list and detail API responses.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="PublisherSerializer.Meta">
 <a class="viewcode-back" href="../../api.html#api.serializers.PublisherSerializer.Meta">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
@@ -89,6 +93,8 @@
 <div class="viewcode-block" id="ArticleSerializer">
 <a class="viewcode-back" href="../../api.html#api.serializers.ArticleSerializer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize approved articles with human-readable author metadata.&quot;&quot;&quot;</span>
+
     <span class="n">publisher</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">()</span>
     <span class="n">author</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">()</span>
 
@@ -114,6 +120,8 @@
 <div class="viewcode-block" id="NewsletterSerializer">
 <a class="viewcode-back" href="../../api.html#api.serializers.NewsletterSerializer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NewsletterSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize newsletter drafts and published newsletter information.&quot;&quot;&quot;</span>
+
     <span class="n">publisher</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">()</span>
     <span class="n">author</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">()</span>
 

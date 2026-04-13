@@ -1,3 +1,5 @@
+"""Regression tests for publisher workflows and editorial permissions."""
+
 from django.test import TestCase
 from django.urls import reverse
 
@@ -8,7 +10,10 @@ from .models import Article, Newsletter, Publisher
 
 
 class PublisherWorkflowTests(TestCase):
+    """Verify publisher creation and membership flows for newsroom users."""
+
     def setUp(self):
+        """Create editor and journalist accounts used by workflow tests."""
         self.editor = CustomUser.objects.create_user(
             username="editor1",
             password="password123",
@@ -21,6 +26,7 @@ class PublisherWorkflowTests(TestCase):
         )
 
     def test_editor_can_create_publisher_and_is_added_to_it(self):
+        """The publisher creator should automatically join as an editor."""
         self.client.force_login(self.editor)
 
         response = self.client.post(
@@ -36,6 +42,7 @@ class PublisherWorkflowTests(TestCase):
         self.assertTrue(publisher.editors.filter(pk=self.editor.pk).exists())
 
     def test_journalist_can_join_a_publisher(self):
+        """Journalists should be able to join existing publishers."""
         publisher = Publisher.objects.create(name="Bugle")
         self.client.force_login(self.journalist)
 
@@ -51,7 +58,10 @@ class PublisherWorkflowTests(TestCase):
 
 
 class EditorialPermissionsTests(TestCase):
+    """Verify that editors can manage content created by journalists."""
+
     def setUp(self):
+        """Create newsroom fixtures used by the editorial permission tests."""
         self.editor = CustomUser.objects.create_user(
             username="editor2",
             password="password123",
@@ -78,6 +88,7 @@ class EditorialPermissionsTests(TestCase):
         )
 
     def test_editor_can_update_another_users_article(self):
+        """Editors should be able to edit articles created by journalists."""
         self.client.force_login(self.editor)
 
         response = self.client.post(
@@ -98,6 +109,7 @@ class EditorialPermissionsTests(TestCase):
         self.assertEqual(self.article.title, "Edited title")
 
     def test_editor_can_delete_another_users_article(self):
+        """Editors should be able to delete articles they did not author."""
         self.client.force_login(self.editor)
 
         response = self.client.post(
@@ -108,6 +120,7 @@ class EditorialPermissionsTests(TestCase):
         self.assertFalse(Article.objects.filter(pk=self.article.pk).exists())
 
     def test_editor_can_update_another_users_newsletter(self):
+        """Editors should be able to update newsletter drafts by journalists."""
         self.client.force_login(self.editor)
 
         response = self.client.post(
@@ -124,6 +137,7 @@ class EditorialPermissionsTests(TestCase):
         self.assertEqual(self.newsletter.subject, "Edited subject")
 
     def test_editor_can_delete_another_users_newsletter(self):
+        """Editors should be able to delete newsletter drafts by journalists."""
         self.client.force_login(self.editor)
 
         response = self.client.post(

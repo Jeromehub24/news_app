@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accounts.views</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
+<span></span><span class="sd">&quot;&quot;&quot;Views for authentication, dashboards, and reader subscriptions.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserPassesTestMixin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginView</span><span class="p">,</span> <span class="n">LogoutView</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">redirect</span>
@@ -83,6 +85,8 @@
 <div class="viewcode-block" id="GuidedLoginView">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.GuidedLoginView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GuidedLoginView</span><span class="p">(</span><span class="n">LoginView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render the custom login template for the newsroom site.&quot;&quot;&quot;</span>
+
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;registration/login.html&quot;</span>
     <span class="n">redirect_authenticated_user</span> <span class="o">=</span> <span class="kc">True</span></div>
 
@@ -91,6 +95,8 @@
 <div class="viewcode-block" id="GuidedLogoutView">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.GuidedLogoutView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GuidedLogoutView</span><span class="p">(</span><span class="n">LogoutView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log users out and return them to the homepage.&quot;&quot;&quot;</span>
+
     <span class="n">next_page</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;core:home&quot;</span><span class="p">)</span></div>
 
 
@@ -98,11 +104,14 @@
 <div class="viewcode-block" id="RoleRequiredMixin">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.RoleRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RoleRequiredMixin</span><span class="p">(</span><span class="n">UserPassesTestMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Restrict a view to authenticated users with one of the allowed roles.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">()</span>
 
 <div class="viewcode-block" id="RoleRequiredMixin.test_func">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.RoleRequiredMixin.test_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return ``True`` when the current user has an allowed newsroom role.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_roles</span>
@@ -112,6 +121,7 @@
 <div class="viewcode-block" id="RoleRequiredMixin.handle_no_permission">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.RoleRequiredMixin.handle_no_permission">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_no_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Redirect signed-in users back to the dashboard with a helpful message.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
             <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have access to that page.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;accounts:dashboard&quot;</span><span class="p">)</span>
@@ -123,6 +133,8 @@
 <div class="viewcode-block" id="SignUpView">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.SignUpView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SignUpView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register a new user account for the News App.&quot;&quot;&quot;</span>
+
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">CustomUserCreationForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;accounts/signup.html&quot;</span>
     <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;accounts:login&quot;</span><span class="p">)</span>
@@ -130,6 +142,7 @@
 <div class="viewcode-block" id="SignUpView.form_valid">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.SignUpView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Show a success message after the account has been created.&quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Account created. You can sign in now.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div>
@@ -140,11 +153,14 @@
 <div class="viewcode-block" id="DashboardView">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.DashboardView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DashboardView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">TemplateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display role-specific account summaries for the signed-in user.&quot;&quot;&quot;</span>
+
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;accounts/dashboard.html&quot;</span>
 
 <div class="viewcode-block" id="DashboardView.get_context_data">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.DashboardView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add role-based counts that drive the dashboard summary cards.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Roles</span><span class="o">.</span><span class="n">READER</span><span class="p">:</span>
@@ -168,6 +184,8 @@
 <div class="viewcode-block" id="ReaderRequiredMixin">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.ReaderRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ReaderRequiredMixin</span><span class="p">(</span><span class="n">RoleRequiredMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limit a view to users who have the reader role.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">(</span><span class="n">Roles</span><span class="o">.</span><span class="n">READER</span><span class="p">,)</span></div>
 
 
@@ -179,6 +197,8 @@
     <span class="n">ReaderRequiredMixin</span><span class="p">,</span>
     <span class="n">UpdateView</span><span class="p">,</span>
 <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the publishers and journalists followed by a reader.&quot;&quot;&quot;</span>
+
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">ReaderSubscriptionForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;accounts/subscriptions.html&quot;</span>
     <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;accounts:dashboard&quot;</span><span class="p">)</span>
@@ -186,12 +206,14 @@
 <div class="viewcode-block" id="ReaderSubscriptionUpdateView.get_object">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.ReaderSubscriptionUpdateView.get_object">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Edit the currently authenticated reader instead of a URL-selected user.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span></div>
 
 
 <div class="viewcode-block" id="ReaderSubscriptionUpdateView.form_valid">
 <a class="viewcode-back" href="../../accounts.html#accounts.views.ReaderSubscriptionUpdateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist subscription changes and show a confirmation message.&quot;&quot;&quot;</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Your subscriptions were updated.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
 </div>

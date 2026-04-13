@@ -1,4 +1,8 @@
+"""Role constants used throughout the News App permission system."""
+
 class Roles:
+    """Canonical role values and human-readable role choices."""
+
     READER = "reader"
     EDITOR = "editor"
     JOURNALIST = "journalist"

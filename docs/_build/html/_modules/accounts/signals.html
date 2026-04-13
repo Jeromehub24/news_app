@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accounts.signals</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models.signals</span><span class="w"> </span><span class="kn">import</span> <span class="n">post_save</span>
+<span></span><span class="sd">&quot;&quot;&quot;Signal handlers that keep custom users aligned with Django groups.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models.signals</span><span class="w"> </span><span class="kn">import</span> <span class="n">post_save</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.dispatch</span><span class="w"> </span><span class="kn">import</span> <span class="n">receiver</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomUser</span>
@@ -80,6 +82,7 @@
 <a class="viewcode-back" href="../../accounts.html#accounts.signals.keep_role_group_in_sync">[docs]</a>
 <span class="nd">@receiver</span><span class="p">(</span><span class="n">post_save</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">CustomUser</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">keep_role_group_in_sync</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Refresh the saved user&#39;s Django group membership after each save.&quot;&quot;&quot;</span>
     <span class="n">sync_user_role_group</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span></div>
 
 </pre></div>

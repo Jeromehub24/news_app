@@ -1,3 +1,5 @@
+"""Forms for publishers, article drafts, and newsletter editing."""
+
 from django import forms
 
 from accounts.constants import Roles
@@ -6,7 +8,10 @@ from .models import Article, Newsletter, Publisher
 
 
 class PublisherScopedFormMixin:
+    """Restrict publisher choices to the publishers a user may work with."""
+
     def __init__(self, *args, user=None, **kwargs):
+        """Filter the publisher field according to the authenticated user."""
         self.user = user
         super().__init__(*args, **kwargs)
         publisher_field = self.fields.get("publisher")
@@ -32,6 +37,7 @@ class PublisherScopedFormMixin:
             )
 
     def get_publisher_queryset(self):
+        """Return the publishers that should be visible in the current form."""
         if not self.user or not self.user.is_authenticated:
             return Publisher.objects.none()
         if self.user.role == Roles.JOURNALIST:
@@ -40,18 +46,24 @@ class PublisherScopedFormMixin:
 
 
 class ArticleForm(PublisherScopedFormMixin, forms.ModelForm):
+    """Create or edit newsroom articles."""
+
     class Meta:
         model = Article
         fields = ("publisher", "title", "summary", "content")
 
 
 class NewsletterForm(PublisherScopedFormMixin, forms.ModelForm):
+    """Create or edit newsletters authored by a journalist."""
+
     class Meta:
         model = Newsletter
         fields = ("publisher", "subject", "body")
 
 
 class PublisherForm(forms.ModelForm):
+    """Create a publisher profile that editors can manage."""
+
     class Meta:
         model = Publisher
         fields = ("name", "description")

@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accounts.forms</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span></span><span class="sd">&quot;&quot;&quot;Forms for creating users and managing reader subscriptions.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserChangeForm</span><span class="p">,</span> <span class="n">UserCreationForm</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">Roles</span>
@@ -80,6 +82,8 @@
 <div class="viewcode-block" id="CustomUserCreationForm">
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.CustomUserCreationForm">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CustomUserCreationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new News App user together with their newsroom role.&quot;&quot;&quot;</span>
+
     <span class="n">role</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">Roles</span><span class="o">.</span><span class="n">CHOICES</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CustomUserCreationForm.Meta">
@@ -94,6 +98,8 @@
 <div class="viewcode-block" id="CustomUserChangeForm">
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.CustomUserChangeForm">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CustomUserChangeForm</span><span class="p">(</span><span class="n">UserChangeForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Edit custom user fields in the Django admin interface.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="CustomUserChangeForm.Meta">
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.CustomUserChangeForm.Meta">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">(</span><span class="n">UserChangeForm</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
@@ -112,6 +118,8 @@
 <div class="viewcode-block" id="ReaderSubscriptionForm">
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.ReaderSubscriptionForm">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ReaderSubscriptionForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Let readers choose publishers and journalists to follow.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ReaderSubscriptionForm.Meta">
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.ReaderSubscriptionForm.Meta">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
@@ -124,6 +132,7 @@
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Order subscription choices and attach reader-facing help text.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;subscribed_publishers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">queryset</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span>
             <span class="s2">&quot;name&quot;</span>

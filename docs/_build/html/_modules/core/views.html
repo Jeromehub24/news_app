@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for core.views</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
+<span></span><span class="sd">&quot;&quot;&quot;Views that power the public site, publishing tools, and review queue.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">messages</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.mixins</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UserPassesTestMixin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Count</span><span class="p">,</span> <span class="n">Q</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">redirect</span>
@@ -94,11 +96,14 @@
 <div class="viewcode-block" id="RoleRequiredMixin">
 <a class="viewcode-back" href="../../core.html#core.views.RoleRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RoleRequiredMixin</span><span class="p">(</span><span class="n">UserPassesTestMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Restrict a view to signed-in users with one of the required roles.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">()</span>
 
 <div class="viewcode-block" id="RoleRequiredMixin.test_func">
 <a class="viewcode-back" href="../../core.html#core.views.RoleRequiredMixin.test_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return ``True`` when the current user satisfies the role check.&quot;&quot;&quot;</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_roles</span></div>
 
@@ -106,6 +111,7 @@
 <div class="viewcode-block" id="RoleRequiredMixin.handle_no_permission">
 <a class="viewcode-back" href="../../core.html#core.views.RoleRequiredMixin.handle_no_permission">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_no_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Redirect signed-in users to the dashboard with an error message.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
             <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have access to that page.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;accounts:dashboard&quot;</span><span class="p">)</span>
@@ -117,11 +123,14 @@
 <div class="viewcode-block" id="HomePageView">
 <a class="viewcode-back" href="../../core.html#core.views.HomePageView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HomePageView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show a landing page with recent approved articles and publishers.&quot;&quot;&quot;</span>
+
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/home.html&quot;</span>
 
 <div class="viewcode-block" id="HomePageView.get_context_data">
 <a class="viewcode-back" href="../../core.html#core.views.HomePageView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add homepage content blocks used by the landing page template.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;latest_articles&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">approved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -137,6 +146,8 @@
 <div class="viewcode-block" id="ArticleListView">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleListView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List approved articles for readers and anonymous visitors.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/article_list.html&quot;</span>
     <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;articles&quot;</span>
@@ -144,6 +155,7 @@
 <div class="viewcode-block" id="ArticleListView.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleListView.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the published articles ordered by most recent activity.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">approved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
@@ -156,6 +168,8 @@
 <div class="viewcode-block" id="ArticleDetailView">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDetailView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleDetailView</span><span class="p">(</span><span class="n">DetailView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display an article while honoring role-based visibility rules.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/article_detail.html&quot;</span>
     <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;article&quot;</span>
@@ -163,6 +177,7 @@
 <div class="viewcode-block" id="ArticleDetailView.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDetailView.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Allow editors to see all drafts and journalists to see their own.&quot;&quot;&quot;</span>
         <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
@@ -175,6 +190,7 @@
 <div class="viewcode-block" id="ArticleDetailView.get_context_data">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDetailView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Expose edit, delete, and approve permissions to the template.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;can_edit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span> <span class="ow">and</span> <span class="p">(</span>
@@ -194,6 +210,8 @@
 <div class="viewcode-block" id="JournalistRequiredMixin">
 <a class="viewcode-back" href="../../core.html#core.views.JournalistRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">JournalistRequiredMixin</span><span class="p">(</span><span class="n">RoleRequiredMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limit a view to newsroom users with the journalist role.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">(</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">,)</span></div>
 
 
@@ -201,6 +219,8 @@
 <div class="viewcode-block" id="EditorRequiredMixin">
 <a class="viewcode-back" href="../../core.html#core.views.EditorRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EditorRequiredMixin</span><span class="p">(</span><span class="n">RoleRequiredMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limit a view to newsroom users with the editor role.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">(</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">,)</span></div>
 
 
@@ -208,6 +228,8 @@
 <div class="viewcode-block" id="EditorOrJournalistRequiredMixin">
 <a class="viewcode-back" href="../../core.html#core.views.EditorOrJournalistRequiredMixin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EditorOrJournalistRequiredMixin</span><span class="p">(</span><span class="n">RoleRequiredMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow access to either editors or journalists.&quot;&quot;&quot;</span>
+
     <span class="n">required_roles</span> <span class="o">=</span> <span class="p">(</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">,</span> <span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">)</span></div>
 
 
@@ -215,6 +237,8 @@
 <div class="viewcode-block" id="ArticleCreateView">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleCreateView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">JournalistRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new article draft for the authenticated journalist.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">ArticleForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/article_form.html&quot;</span>
@@ -222,6 +246,7 @@
 <div class="viewcode-block" id="ArticleCreateView.get_form_kwargs">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleCreateView.get_form_kwargs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass the current user into the form for publisher scoping.&quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
@@ -230,6 +255,7 @@
 <div class="viewcode-block" id="ArticleCreateView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleCreateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attach the current user as author before saving the article.&quot;&quot;&quot;</span>
         <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Article saved and sent to the review queue.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
@@ -243,9 +269,12 @@
     <span class="n">LoginRequiredMixin</span><span class="p">,</span>
     <span class="n">EditorOrJournalistRequiredMixin</span><span class="p">,</span>
 <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow editors to access all articles and journalists to access their own.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ArticleEditorAccessMixin.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleEditorAccessMixin.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Restrict journalists to their own articles while editors see all.&quot;&quot;&quot;</span>
         <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">queryset</span>
@@ -257,6 +286,8 @@
 <div class="viewcode-block" id="ArticleUpdateView">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleUpdateView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleUpdateView</span><span class="p">(</span><span class="n">ArticleEditorAccessMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Edit an existing article.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">ArticleForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/article_form.html&quot;</span>
@@ -264,6 +295,7 @@
 <div class="viewcode-block" id="ArticleUpdateView.get_form_kwargs">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleUpdateView.get_form_kwargs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass the current user into the form for publisher scoping.&quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
@@ -272,6 +304,7 @@
 <div class="viewcode-block" id="ArticleUpdateView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleUpdateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save article changes and confirm the update to the user.&quot;&quot;&quot;</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Article updated.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
 </div>
@@ -281,6 +314,8 @@
 <div class="viewcode-block" id="ArticleDeleteView">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDeleteView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArticleDeleteView</span><span class="p">(</span><span class="n">ArticleEditorAccessMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete an article after a confirmation step.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/confirm_delete.html&quot;</span>
     <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;core:article-list&quot;</span><span class="p">)</span>
@@ -288,6 +323,7 @@
 <div class="viewcode-block" id="ArticleDeleteView.get_context_data">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDeleteView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Describe the article being deleted in the shared confirmation template.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;item_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;article&quot;</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;item_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">title</span>
@@ -297,6 +333,7 @@
 <div class="viewcode-block" id="ArticleDeleteView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.ArticleDeleteView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the article and show a success message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s1">&quot; was deleted.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
@@ -307,6 +344,8 @@
 <div class="viewcode-block" id="NewsletterListView">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterListView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NewsletterListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List newsletters ordered by most recently updated first.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/newsletter_list.html&quot;</span>
     <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;newsletters&quot;</span>
@@ -314,6 +353,7 @@
 <div class="viewcode-block" id="NewsletterListView.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterListView.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return newsletters with related author and publisher records loaded.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
             <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;-created_at&quot;</span><span class="p">)</span>
@@ -325,6 +365,8 @@
 <div class="viewcode-block" id="NewsletterCreateView">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterCreateView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NewsletterCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">JournalistRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a newsletter draft for the authenticated journalist.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">NewsletterForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/newsletter_form.html&quot;</span>
@@ -333,6 +375,7 @@
 <div class="viewcode-block" id="NewsletterCreateView.get_form_kwargs">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterCreateView.get_form_kwargs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass the current user into the form for publisher scoping.&quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
@@ -341,6 +384,7 @@
 <div class="viewcode-block" id="NewsletterCreateView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterCreateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attach the current user as author before saving the newsletter.&quot;&quot;&quot;</span>
         <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Newsletter draft saved.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
@@ -354,9 +398,12 @@
     <span class="n">LoginRequiredMixin</span><span class="p">,</span>
     <span class="n">EditorOrJournalistRequiredMixin</span><span class="p">,</span>
 <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow editors to access all newsletters and journalists only their own.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="NewsletterEditorAccessMixin.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterEditorAccessMixin.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Restrict journalists to their own newsletters while editors see all.&quot;&quot;&quot;</span>
         <span class="n">queryset</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">queryset</span>
@@ -368,6 +415,8 @@
 <div class="viewcode-block" id="NewsletterUpdateView">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterUpdateView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NewsletterUpdateView</span><span class="p">(</span><span class="n">NewsletterEditorAccessMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Edit an existing newsletter draft.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">NewsletterForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/newsletter_form.html&quot;</span>
@@ -376,6 +425,7 @@
 <div class="viewcode-block" id="NewsletterUpdateView.get_form_kwargs">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterUpdateView.get_form_kwargs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_form_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pass the current user into the form for publisher scoping.&quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_form_kwargs</span><span class="p">()</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
@@ -384,6 +434,7 @@
 <div class="viewcode-block" id="NewsletterUpdateView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterUpdateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist newsletter changes and confirm the update.&quot;&quot;&quot;</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Newsletter updated.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
 </div>
@@ -393,6 +444,8 @@
 <div class="viewcode-block" id="NewsletterDeleteView">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterDeleteView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NewsletterDeleteView</span><span class="p">(</span><span class="n">NewsletterEditorAccessMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete a newsletter after a confirmation step.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/confirm_delete.html&quot;</span>
     <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;core:newsletter-list&quot;</span><span class="p">)</span>
@@ -400,6 +453,7 @@
 <div class="viewcode-block" id="NewsletterDeleteView.get_context_data">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterDeleteView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Describe the newsletter being deleted in the shared confirmation view.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;item_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;newsletter&quot;</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;item_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">subject</span>
@@ -409,6 +463,7 @@
 <div class="viewcode-block" id="NewsletterDeleteView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.NewsletterDeleteView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the newsletter and show a success message.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">subject</span><span class="si">}</span><span class="s1">&quot; was deleted.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
@@ -419,6 +474,8 @@
 <div class="viewcode-block" id="ReviewQueueView">
 <a class="viewcode-back" href="../../core.html#core.views.ReviewQueueView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ReviewQueueView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">EditorRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List unapproved articles that still need editorial review.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/article_review_list.html&quot;</span>
     <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;articles&quot;</span>
@@ -426,6 +483,7 @@
 <div class="viewcode-block" id="ReviewQueueView.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.ReviewQueueView.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the pending article queue ordered by newest first.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">approved</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span>
@@ -438,9 +496,12 @@
 <div class="viewcode-block" id="ApproveArticleView">
 <a class="viewcode-back" href="../../core.html#core.views.ApproveArticleView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ApproveArticleView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">EditorRequiredMixin</span><span class="p">,</span> <span class="n">View</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Approve a pending article and trigger downstream notifications.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="ApproveArticleView.post">
 <a class="viewcode-back" href="../../core.html#core.views.ApproveArticleView.post">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Approve the selected article and return the editor to the review queue.&quot;&quot;&quot;</span>
         <span class="n">article</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Article</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span> <span class="n">approved</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">approve_article</span><span class="p">(</span><span class="n">article</span><span class="p">,</span> <span class="n">editor</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">article</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s1">&quot; was approved.&#39;</span><span class="p">)</span>
@@ -452,6 +513,8 @@
 <div class="viewcode-block" id="PublisherListView">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherListView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PublisherListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List publishers together with membership counts and join state.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Publisher</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/publisher_list.html&quot;</span>
     <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;publishers&quot;</span>
@@ -459,6 +522,7 @@
 <div class="viewcode-block" id="PublisherListView.get_queryset">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherListView.get_queryset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Annotate publishers with editor and journalist totals for display.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
                 <span class="n">editor_total</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s2">&quot;editors&quot;</span><span class="p">,</span> <span class="n">distinct</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -471,6 +535,7 @@
 <div class="viewcode-block" id="PublisherListView.get_context_data">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherListView.get_context_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Expose membership actions and counts tailored to the current user.&quot;&quot;&quot;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
         <span class="n">context</span><span class="p">[</span><span class="s2">&quot;can_create_publishers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
@@ -500,6 +565,8 @@
 <div class="viewcode-block" id="PublisherCreateView">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherCreateView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PublisherCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">EditorRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new publisher and add the creator as its first editor.&quot;&quot;&quot;</span>
+
     <span class="n">model</span> <span class="o">=</span> <span class="n">Publisher</span>
     <span class="n">form_class</span> <span class="o">=</span> <span class="n">PublisherForm</span>
     <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;core/publisher_form.html&quot;</span>
@@ -508,6 +575,7 @@
 <div class="viewcode-block" id="PublisherCreateView.form_valid">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherCreateView.form_valid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the publisher and grant the creator editor membership.&quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
         <span class="c1"># The creator becomes the first editor so the new publisher is usable.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">editors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
@@ -524,9 +592,12 @@
     <span class="n">EditorOrJournalistRequiredMixin</span><span class="p">,</span>
     <span class="n">View</span><span class="p">,</span>
 <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Join or leave a publisher as either an editor or journalist.&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="PublisherMembershipToggleView.post">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherMembershipToggleView.post">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Toggle the current user&#39;s membership in the selected publisher.&quot;&quot;&quot;</span>
         <span class="n">publisher</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Publisher</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
         <span class="n">membership_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_membership_manager</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
         <span class="n">action</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="s2">&quot;join&quot;</span><span class="p">)</span>
@@ -545,6 +616,7 @@
 <div class="viewcode-block" id="PublisherMembershipToggleView.get_membership_manager">
 <a class="viewcode-back" href="../../core.html#core.views.PublisherMembershipToggleView.get_membership_manager">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_membership_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">publisher</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the correct many-to-many manager for the user&#39;s role.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">publisher</span><span class="o">.</span><span class="n">editors</span>
         <span class="k">return</span> <span class="n">publisher</span><span class="o">.</span><span class="n">journalists</span></div>

@@ -69,7 +69,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accounts.admin</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+<span></span><span class="sd">&quot;&quot;&quot;Admin registrations for the custom News App user model.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.admin</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserAdmin</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomUserChangeForm</span><span class="p">,</span> <span class="n">CustomUserCreationForm</span>
@@ -80,6 +82,8 @@
 <a class="viewcode-back" href="../../accounts.html#accounts.admin.CustomUserAdmin">[docs]</a>
 <span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">CustomUser</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CustomUserAdmin</span><span class="p">(</span><span class="n">UserAdmin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure how newsroom users are managed in the Django admin.&quot;&quot;&quot;</span>
+
     <span class="n">add_form</span> <span class="o">=</span> <span class="n">CustomUserCreationForm</span>
     <span class="n">form</span> <span class="o">=</span> <span class="n">CustomUserChangeForm</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">CustomUser</span>
