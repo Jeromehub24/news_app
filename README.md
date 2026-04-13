@@ -17,55 +17,89 @@ A Django news platform with separate reader, journalist, and editor workflows.
 - `api/` exposes the reader-facing API endpoints.
 - `docs/` contains the generated Sphinx documentation for the project.
 
-## Local Setup With a Virtual Environment
+## Local Setup
 
-1. Create and activate a virtual environment.
+Start from a terminal in the folder where you want to keep the project:
 
-   Windows PowerShell:
+```powershell
+git clone <your-repository-url> news_app
+cd news_app
+```
 
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
+### 1. Create and activate a virtual environment
 
-2. Install the project dependencies.
+Windows PowerShell:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-3. Provide your environment variables.
+### 2. Install the dependencies
 
-   Use `.env.example` as a guide. For a quick local setup you can run with
-   SQLite instead of MariaDB by setting:
+```powershell
+pip install -r requirements.txt
+```
 
-   ```powershell
-   $env:DJANGO_SECRET_KEY = "replace-this-with-your-own-secret-key"
-   $env:DJANGO_DEBUG = "1"
-   $env:DJANGO_ALLOWED_HOSTS = "127.0.0.1,localhost"
-   $env:NEWS_APP_DB_ENGINE = "sqlite"
-   ```
+### 3. Create a `.env` file
 
-   For a MariaDB-backed setup, also define:
+Copy the example file and update it with your own values:
 
-   ```powershell
-   $env:NEWS_APP_DB_NAME = "news_app"
-   $env:NEWS_APP_DB_USER = "your-db-user"
-   $env:NEWS_APP_DB_PASSWORD = "your-db-password"
-   $env:NEWS_APP_DB_HOST = "127.0.0.1"
-   $env:NEWS_APP_DB_PORT = "3306"
-   ```
+```powershell
+Copy-Item .env.example .env
+```
 
-4. Apply migrations, seed the role groups, and start the app.
+The project now loads `.env` automatically from the repository root by using
+`python-dotenv`.
 
-   ```bash
-   python manage.py migrate
-   python manage.py seed_groups
-   python manage.py createsuperuser
-   python manage.py runserver
-   ```
+### 4. Choose a database setup
 
-5. Open the app at `http://127.0.0.1:8000/`.
+#### Option A: MariaDB (recommended for the capstone review)
+
+Create the MariaDB database before running migrations:
+
+```sql
+CREATE DATABASE news_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Then make sure your `.env` contains the correct MariaDB connection details:
+
+```env
+DJANGO_SECRET_KEY=replace-this-with-a-secret-key
+DJANGO_DEBUG=1
+DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+NEWS_APP_DB_ENGINE=mariadb
+NEWS_APP_DB_NAME=news_app
+NEWS_APP_DB_USER=root
+NEWS_APP_DB_PASSWORD=change-me
+NEWS_APP_DB_HOST=127.0.0.1
+NEWS_APP_DB_PORT=3306
+```
+
+#### Option B: SQLite (quick local setup)
+
+If you want to run the project without MariaDB, update `.env` to use SQLite:
+
+```env
+DJANGO_SECRET_KEY=replace-this-with-a-secret-key
+DJANGO_DEBUG=1
+DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+NEWS_APP_DB_ENGINE=sqlite
+```
+
+When `NEWS_APP_DB_ENGINE=sqlite`, Django will create `db.sqlite3` automatically
+when you run migrations.
+
+### 5. Apply migrations and seed the role groups
+
+```powershell
+python manage.py migrate
+python manage.py seed_groups
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+Open the app at `http://127.0.0.1:8000/`.
 
 ## Documentation
 
@@ -82,6 +116,13 @@ To rebuild the docs:
 ```
 
 ## Running With Docker
+
+Open a terminal in the project root first, the same directory that contains
+`Dockerfile` and `manage.py`:
+
+```powershell
+cd path\to\news_app
+```
 
 Build the image:
 
